@@ -1,4 +1,14 @@
-const demoBooks = [
+interface Book {
+    title: string;
+    subtitle: string | null;
+    author: string;
+    yearPublished: number;
+    tags: string[];
+
+}
+
+
+const demoBooks: Book[] = [
     {
         title: "Beyond Good and Evil",
         subtitle: "Prelude to a Philosophy of the Future",
