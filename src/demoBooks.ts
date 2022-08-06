@@ -1,6 +1,6 @@
 interface Book {
     title: string;
-    subtitle: string | null;
+    subtitle?: string | null;
     author: string;
     yearPublished: number;
     tags: string[];
@@ -25,17 +25,10 @@ const demoBooks: Book[] = [
     },
     {
         title: "Chaos",
-        subtitle: null,
+        subtitle: "Making a new science",
         author: "James GLeick",
-        yearPublished: 2017,
+        yearPublished: 1987,
         tags: ['inProgress']
-    },
-    {
-        title: "Invetile Mele",
-        subtitle: null,
-        author: "Nikola Tesla",
-        yearPublished: 2017,
-        tags: ['read']
     },
     {
         title: "A Brief History of Time",
@@ -74,12 +67,31 @@ const demoBooks: Book[] = [
     },
     {
         title: "Elon Musk, Tesla, SpaceX",
-        subtitle: null,
+        subtitle: "and the quest for a fantastic future",
         author: "Ashlee Vance",
         yearPublished: 2015,
         tags: ['read']
     },
-
+    {
+        title: "Albert Einstein: And the Frontiers of Physics",
+        author: "Jeremy Berstein",
+        yearPublished: 1996,
+        tags: ['inProgress']
+    },
+    {
+        title: "Ecce Homo",
+        author: "Friedrich Nietzsche",
+        yearPublished: 1906,
+        tags: ['saved']
+    },
+    {
+        title: "The science of Rick and Morty ",
+        subtitle: "The unofficial guide to eath's stupidest show",
+        author: "Matt Brady",
+        yearPublished: 2019,
+        tags: ['read']
+    },
+    
 ];
 
 export default demoBooks;
