@@ -10,10 +10,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Author {
+  id           String @id @default(uuid())
+  name         String
+  birthYear    Int
+  yearOfDeath  Int?
+  booksWritten Book[]
+}
+
 model Book {
-  id            String  @id @default(uuid())
+  id            Int     @id @default(autoincrement())
   title         String
-  subtile       String?
+  subtitle      String?
   yearPublished Int
-  tags          String
+
+  savedBy         User[] @relation("SavedBy")
+  readBy          User[] @relation("readBy")
+  currentlyReadBy User[] @relation("currentlyReadBy")
+
+  Author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+
+  savedBooks       Book[] @relation("SavedBy")
+  readBooks        Book[] @relation("readBy")
+  currentlyReading Book[] @relation("currentlyReadBy")
+
+  isAdmin Boolean
 }

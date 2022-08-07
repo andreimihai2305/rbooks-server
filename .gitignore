@@ -1,3 +1,10 @@
-/node_modules
-*.js
 .env
+/node_modules
+/prisma/migrations
+/dist
+
+*.js
+*.js.map
+
+test.ts
+
