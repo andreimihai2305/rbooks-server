@@ -30,6 +30,8 @@ model Book {
 
   Author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId String
+
+  @@unique([title, yearPublished, authorId])
 }
 
 model User {
@@ -41,5 +43,5 @@ model User {
   readBooks        Book[] @relation("readBy")
   currentlyReading Book[] @relation("currentlyReadBy")
 
-  isAdmin Boolean
+  isAdmin Boolean?
 }

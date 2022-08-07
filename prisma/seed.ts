@@ -6,7 +6,7 @@ async function seed() {
   await prisma.book.deleteMany();
   await prisma.author.deleteMany();
 
-  const nietzsche = await prisma.author.create({
+  let nietzsche = await prisma.author.create({
     data: { name: "Friedrich Nietzsche", birthYear: 1844, yearOfDeath: 1900 },
   });
   const jung = await prisma.author.create({
@@ -40,7 +40,6 @@ async function seed() {
       title: "Beyond Good and Evil",
     },
   });
-  console.log(beyondGoodAndEvil);
 
   const andrew = await prisma.user.create({
     data: {
@@ -58,8 +57,6 @@ async function seed() {
       savedBooks: { connect: { id: beyondGoodAndEvil?.id } },
     },
   });
-  console.log(john);
-  console.log(andrew);
 }
 
-export default seed;
+seed();
