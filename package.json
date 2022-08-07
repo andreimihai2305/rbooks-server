@@ -2,13 +2,13 @@
   "name": "rbooks-server",
   "version": "1.0.0",
   "description": "backend server for the rBooks project",
-  "main": "index.js",
+  "main": "server.js",
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "ts-node prisma/seed.ts"
   },
   "scripts": {
     "build": "tsc",
-    "start": "nodemon --exec ts-node src/index.ts"
+    "start": "nodemon --exec ts-node src/server.ts"
   },
   "author": "Andrei Mihai",
   "license": "ISC",
