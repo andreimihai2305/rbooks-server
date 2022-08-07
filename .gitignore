@@ -3,8 +3,5 @@
 /prisma/migrations
 /dist
 
-*.js
-*.js.map
-
 test.ts
 
