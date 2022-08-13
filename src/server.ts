@@ -9,6 +9,7 @@ const prisma = new PrismaClient();
 dotenv.config();
 
 const app = express();
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 
@@ -36,13 +37,6 @@ app.get("/author/", async (req, res) => {
   return res.status(400).json("Bad request");
 });
 
-app.get("/users", async (req, res) => {
-  const users: User[] = await prisma.user.findMany();
-
-  if (users) return res.status(200).json(users);
-  return res.status(500).json("Internal Server error");
-});
-
 app.get("/books-list", async (req, res) => {
   const books: Book[] = await prisma.book.findMany({
     include: {
@@ -51,12 +45,29 @@ app.get("/books-list", async (req, res) => {
   });
 
   if (books) return res.status(200).json(books);
-
   return res.status(500).json("Internal server error");
+});
+
+app.get("/users", async (req, res) => {
+  const users: User[] = await prisma.user.findMany();
+
+  if (users) return res.status(200).json(users);
+  return res.status(500).json("Internal Server error");
 });
 
 ////////////////////////////////////////////////////////
 // POST
+app.post("/auth", async (req, res) => {
+  const { username, password }: User = req.body;
+
+  const foundUser = await prisma.user.findFirst({
+    where: { username: username },
+  });
+
+  if (!foundUser) return res.status(401).json({ error: "No user found" });
+  return res.status(200).json(foundUser);
+});
+
 app.post("/new-book", async (req, res) => {
   const { title, subtitle, yearPublished, authorId } = req.body;
 
