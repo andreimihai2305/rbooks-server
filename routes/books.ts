@@ -1,5 +1,5 @@
 import prisma from "../src/prismaClient";
-import { Book } from "../src/interfaces";
+import { Book } from "../interfaces";
 import { Router } from "express";
 
 const booksRouter = Router();

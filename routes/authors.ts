@@ -1,18 +1,18 @@
-import { Router } from "express";
-import { Author } from "../src/interfaces";
 import prisma from "../src/prismaClient";
+import { Author } from "../interfaces";
+import { Request, Response, Router } from "express";
 
 const authorsRouter = Router();
 
-authorsRouter.get("/authors", async (req, res) => {
+authorsRouter.get("/authors", async (req: Request, res: Response) => {
   const authors: Author[] = await prisma.author.findMany();
   return authors
     ? res.status(200).json(authors)
     : res.status(500).json("Server error");
 });
 
-authorsRouter.get("/author/", async (req, res) => {
-  const { id }: { id: string } = req.body;
+authorsRouter.get("/author/", async (req: Request, res: Response) => {
+  const { id }: { id: string } = req?.body;
   const author: Author | null = await prisma.author.findFirst({
     where: {
       id: id,
