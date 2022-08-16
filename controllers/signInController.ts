@@ -23,12 +23,15 @@ const signInController = async (req: Request, res: Response) => {
   });
 
   if (!foundUser) return res.status(401).json({ message: "No user found" });
+
   const isMatch = await bcrypt.compare(password, foundUser?.password);
-  if (isMatch)
-    return res
-      .status(200)
-      .json({ succes: `User ${foundUser.username} is logged in` });
-  return res.status(200).json(foundUser);
+
+  if (isMatch) {
+    return res.status(200).json({
+      succes: `User ${foundUser.username} is logged in`,
+      userId: foundUser.id,
+    });
+  }
 };
 
 export default signInController;
