@@ -1,10 +1,10 @@
 import prisma from "../src/prismaClient";
 import { Book } from "../interfaces";
-import { Router } from "express";
+import { Request, Router, Response } from "express";
 
 const booksRouter = Router();
 
-booksRouter.post("/new-book", async (req, res) => {
+booksRouter.post("/new-book", async (req: Request, res: Response) => {
   const { title, subtitle, yearPublished, authorId } = req.body;
 
   const book: Book = await prisma.book.create({
@@ -24,7 +24,7 @@ booksRouter.post("/new-book", async (req, res) => {
   return res.status(400).send("Bad request");
 });
 
-booksRouter.get("/books-list", async (req, res) => {
+booksRouter.get("/books-list", async (req: Request, res: Response) => {
   const books: Book[] = await prisma.book.findMany({
     include: {
       Author: true,
