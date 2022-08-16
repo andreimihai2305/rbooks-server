@@ -1,5 +1,8 @@
-const allowedOrigins = ["http://127.0.0.1:3000"];
-const corsOptions = {
+import { CorsOptions } from "cors";
+
+const allowedOrigins = ["http://localhost:3000"];
+
+const corsOptions: CorsOptions = {
   origin: (origin: any, callback: any) => {
     if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
@@ -7,7 +10,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS."));
     }
   },
-  optionsSuccesStatus: 200,
+  optionsSuccessStatus: 200,
 };
 
 export default corsOptions;
