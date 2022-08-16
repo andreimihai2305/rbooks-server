@@ -1,6 +1,5 @@
 import { CorsOptions } from "cors";
-
-const allowedOrigins = ["http://localhost:3000"];
+import allowedOrigins from "./allowedOrigins";
 
 const corsOptions: CorsOptions = {
   origin: (origin: any, callback: any) => {
@@ -11,6 +10,8 @@ const corsOptions: CorsOptions = {
     }
   },
   optionsSuccessStatus: 200,
+  credentials: true,
+  allowedHeaders: ["Access-Control-Allow-Credentials", "Content-Type"],
 };
 
 export default corsOptions;
